@@ -1,25 +1,31 @@
+// package.json
 {
-  "name": "with-next",
+  "name": "exp",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.105",
-  "workspaces": [],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
+    "@ecies/ciphers": "^0.2.2",
     "@rainbow-me/rainbowkit": "^2.2.8",
-    "@tanstack/react-query": "^5.55.3",
-    "next": "15.4.6",
+    "@tanstack/react-query": "^5.51.21",
+    "eciesjs": "^0.4.12",
+    "next": "^15.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "viem": "2.29.2",
-    "wagmi": "^2.12.5"
+    "viem": "^2.33.3",
+    "wagmi": "^2.16.3"
   },
   "devDependencies": {
-    "@types/node": "^20.14.8",
-    "@types/react": "^19.1.8",
-    "typescript": "5.5.4"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "^15.4.6",
+    "typescript": "^5"
   }
 }
