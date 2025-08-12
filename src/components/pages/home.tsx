@@ -20,7 +20,7 @@ const Home = () => {
     address: contractAddress,
     abi: ERC721ABI,
     functionName: 'tokenURI',
-    args: [BigInt(1)], // Changed from 1n for es5 compatibility
+    args: [BigInt(1)], // Changed from 1n
     query: {
       enabled: isConnected,
     },
@@ -28,7 +28,6 @@ const Home = () => {
 
   useEffect(() => {
     if (typeof tokenUri === 'string' && tokenUri) {
-      // Handle IPFS URIs by converting to HTTP gateway
       const httpUri = tokenUri.startsWith('ipfs://')
         ? `https://ipfs.io/ipfs/${tokenUri.replace('ipfs://', '')}`
         : tokenUri;
