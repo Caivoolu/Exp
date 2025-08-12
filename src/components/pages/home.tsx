@@ -28,7 +28,11 @@ const Home = () => {
 
   useEffect(() => {
     if (typeof tokenUri === 'string' && tokenUri) {
-      fetch(tokenUri)
+      // Handle IPFS URIs by converting to HTTP gateway
+      const httpUri = tokenUri.startsWith('ipfs://')
+        ? `https://ipfs.io/ipfs/${tokenUri.replace('ipfs://', '')}`
+        : tokenUri;
+      fetch(httpUri)
         .then((res) => {
           if (!res.ok) throw new Error('Gagal mengambil metadata');
           return res.json();
@@ -37,11 +41,12 @@ const Home = () => {
           if (metadata.image) {
             setNftImage(metadata.image);
           } else {
+            console.warn('No image in metadata:', metadata);
             setNftImage(fallbackImageUrl);
           }
         })
         .catch((err) => {
-          console.error('Failed to fetch metadata:', err); // Improved error logging
+          console.error('Failed to fetch metadata:', err);
           setNftImage(fallbackImageUrl);
         });
     }
@@ -52,6 +57,10 @@ const Home = () => {
   const handleMint = () => {
     if (!writeContract) {
       console.error('Fungsi untuk mint tidak tersedia.');
+      return;
+    }
+    if (mintAmount < 1) {
+      console.error('Jumlah mint harus lebih besar dari 0');
       return;
     }
     writeContract({
@@ -103,7 +112,10 @@ const Home = () => {
               type="number"
               min={1}
               value={mintAmount}
-              onChange={(e) => setMintAmount(parseInt(e.target.value) || 1)}
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setMintAmount(value >= 1 ? value : 1);
+              }}
               className="neo-input"
               disabled={isPending || isConfirming}
               placeholder="Masukkan jumlah"
@@ -111,7 +123,7 @@ const Home = () => {
             />
             <button
               onClick={handleMint}
-              disabled={!writeContract || isPending || isConfirming}
+              disabled={!writeContract || isPending || isConfirming || mintAmount < 1}
               className="neo-button accent"
               style={{ width: '100%', padding: '12px', borderRadius: '12px', cursor: 'pointer' }}
             >
@@ -120,7 +132,7 @@ const Home = () => {
             {error && (
               <p className="mt-4 small" style={{ color: '#ff6b6b' }}>
                 Error: {(error as BaseError).shortMessage || error.message}
-                {console.error(error)} {/* Debug logging */}
+                {console.error('Mint error:', error)}
               </p>
             )}
             {isConfirmed && hash && (
