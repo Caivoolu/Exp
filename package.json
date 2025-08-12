@@ -2,7 +2,7 @@
   "name": "with-next",
   "private": true,
   "version": "0.0.105",
-  "workspaces": [], // Explicitly disable
+  "workspaces": [], // Add to suppress workspaces warning
   "scripts": {
     "dev": "next dev",
     "build": "next build",
