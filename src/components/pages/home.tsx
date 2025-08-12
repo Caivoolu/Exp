@@ -20,7 +20,7 @@ const Home = () => {
     address: contractAddress,
     abi: ERC721ABI,
     functionName: 'tokenURI',
-    args: [BigInt(1)], // Changed from 1n
+    args: [BigInt(1)], // For es5 compatibility
     query: {
       enabled: isConnected,
     },
@@ -53,6 +53,13 @@ const Home = () => {
 
   const { data: hash, isPending, error, writeContract } = useWriteContract();
 
+  // Log error when it changes
+  useEffect(() => {
+    if (error) {
+      console.error('Mint error:', error);
+    }
+  }, [error]);
+
   const handleMint = () => {
     if (!writeContract) {
       console.error('Fungsi untuk mint tidak tersedia.');
@@ -73,7 +80,7 @@ const Home = () => {
         pricePerToken,
         {
           proof: [],
-          quantityLimitPerWallet: BigInt(0), // Changed from 0n
+          quantityLimitPerWallet: BigInt(0), // For es5 compatibility
           pricePerToken: pricePerToken,
           currency: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
         },
@@ -131,7 +138,6 @@ const Home = () => {
             {error && (
               <p className="mt-4 small" style={{ color: '#ff6b6b' }}>
                 Error: {(error as BaseError).shortMessage || error.message}
-                {console.error('Mint error:', error)}
               </p>
             )}
             {isConfirmed && hash && (
