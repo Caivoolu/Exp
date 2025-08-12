@@ -1,0 +1,116 @@
+.sidebarContainer {
+    position: fixed;
+      top: 0;
+        left: 0;
+          height: 100vh;
+            width: 80px;
+              background: transparent;
+                display: flex;
+                  justify-content: center;
+                    padding: 20px 0;
+                      user-select: none;
+                        z-index: 1000;
+                        }
+
+                        .sidebarFrame {
+                          width: 56px;
+                            height: 90%;
+                              display: flex;
+                                flex-direction: column;
+                                  align-items: center;
+                                    padding: 12px 0;
+                                      border-radius: 16px;
+                                        background: #5a82f7;
+                                          border: 2px solid #4a6cd9;
+                                            box-shadow:
+                                                0 4px 8px rgba(59, 89, 182, 0.6),
+                                                    0 0 10px rgba(90, 130, 247, 0.7);
+                                                      transition: box-shadow 0.3s ease, background 0.3s ease;
+                                                        position: relative;
+                                                        }
+
+                                                        .cButton {
+                                                          width: 40px;
+                                                            height: 40px;
+                                                              margin: 0 0 20px 0;
+                                                                background: #5a82f7;
+                                                                  border-radius: 6px;
+                                                                    border: none;
+                                                                      box-shadow:
+                                                                          3px 3px 8px #3d60d8,
+                                                                              -3px -3px 8px #8faaff;
+                                                                                display: flex;
+                                                                                  justify-content: center;
+                                                                                    align-items: center;
+                                                                                      cursor: pointer;
+                                                                                        transition: all 0.15s ease;
+                                                                                          color: #e0e7ff;
+                                                                                          }
+
+                                                                                          .cButton:hover {
+                                                                                            box-shadow:
+                                                                                                inset 2px 2px 6px #2747a7,
+                                                                                                    inset -2px -2px 6px #aec2ff;
+                                                                                                    }
+
+                                                                                                    .cButtonActive {
+                                                                                                      background: linear-gradient(to top, #3d60d8, #5a82f7);
+                                                                                                        box-shadow:
+                                                                                                            inset 4px 4px 8px #2b3e81,
+                                                                                                                inset -4px -4px 8px #a1b7ff;
+                                                                                                                  color: #cbd4ff;
+                                                                                                                  }
+
+                                                                                                                  .floating {
+                                                                                                                    position: absolute;
+                                                                                                                      left: 50%;
+                                                                                                                        transform: translateX(-50%);
+                                                                                                                          width: 40px;
+                                                                                                                            height: 40px;
+                                                                                                                              margin: 0;
+                                                                                                                                border-radius: 50%;
+                                                                                                                                  background: #4f73e8;
+                                                                                                                                    transition: all 0.3s ease;
+                                                                                                                                      cursor: pointer;
+                                                                                                                                        box-shadow:
+                                                                                                                                            3px 3px 8px #3d60d8,
+                                                                                                                                                -3px -3px 8px #8faaff;
+                                                                                                                                                  color: #e0e7ff;
+                                                                                                                                                  }
+
+                                                                                                                                                  .about {
+                                                                                                                                                    bottom: 90px;
+                                                                                                                                                    }
+
+                                                                                                                                                    .profile {
+                                                                                                                                                      bottom: 25px;
+                                                                                                                                                      }
+
+                                                                                                                                                      .floating:hover {
+                                                                                                                                                        background: #3a5cd0;
+                                                                                                                                                          box-shadow:
+                                                                                                                                                              inset 2px 2px 6px #2747a7,
+                                                                                                                                                                  inset -2px -2px 6px #aec2ff;
+                                                                                                                                                                  }
+
+                                                                                                                                                                  .contentFrame {
+                                                                                                                                                                    margin-left: 100px;
+                                                                                                                                                                      margin-top: 20px;
+                                                                                                                                                                        padding: 24px;
+                                                                                                                                                                          max-width: 600px;
+                                                                                                                                                                            min-height: 400px;
+                                                                                                                                                                              border-radius: 24px;
+                                                                                                                                                                                background: #e0e5ec;
+                                                                                                                                                                                  box-shadow:
+                                                                                                                                                                                      8px 8px 16px #bebebe,
+                                                                                                                                                                                          -8px -8px 16px #ffffff;
+                                                                                                                                                                                            transition: box-shadow 0.3s ease;
+                                                                                                                                                                                            }
+
+                                                                                                                                                                                            .contentFrame.dark {
+                                                                                                                                                                                              background: #1e1e2f;
+                                                                                                                                                                                                box-shadow:
+                                                                                                                                                                                                    8px 8px 16px #171726,
+                                                                                                                                                                                                        -8px -8px 16px #29293d;
+                                                                                                                                                                                                          color: #ccc;
+                                                                                                                                                                                                          }
