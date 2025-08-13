@@ -1,40 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '../styles/sidebar.module.css';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-// Impor komponen halaman
-import Home from './pages/home';
-import Tool from './pages/tool';
-import ShoppingCart from './pages/shopping-cart';
-import DollarSign from './pages/dollar-sign';
-import Info from './pages/info';
-import User from './pages/user';
+interface SidebarProps {
+  active: string;
+  setActive: (key: string) => void;
+}
 
-// Deklarasi global untuk feather-icons
-declare const feather: any;
+const ICONS: Record<string, string> = {
+  home: 'home',
+  lab: 'tool',
+  market: 'shopping-cart',
+  games: 'dollar-sign',
+  about: 'info',
+  profile: 'user',
+};
 
-// Mapping halaman
-const PAGES = {
-  home: <Home />,
-    lab: <Tool />,
-      market: <ShoppingCart />,
-        games: <DollarSign />,
-          about: <Info />,
-            profile: <User />,
-            };
+const Sidebar: React.FC<SidebarProps> = ({ active, setActive }) => {
+  const connectButtonRef = useRef<HTMLDivElement>(null);
 
-            const Sidebar = () => {
-              const [active, setActive] = useState<keyof typeof PAGES>('home');
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).feather) {
+      (window as any).feather.replace();
+    }
+  }, [active]);
 
-                useEffect(() => {
-                    if (typeof feather !== 'undefined' && feather.replace) {
-                          feather.replace();
-                              }
-                                }, [active]);
+  const handleClick = (key: string) => {
+    if (key === 'profile' && connectButtonRef.current) {
+      // Simulasi klik ConnectButton
+      const button = connectButtonRef.current.querySelector('button');
+      button?.click();
+    } else {
+      setActive(key);
+    }
+  };
 
-                                  const handleClick = (key: keyof typeof PAGES) => {
-                                      setActive(key);
-                                        };
+  return (
+    <>
+      <aside className={styles.sidebarContainer}>
+        <div className={styles.sidebarFrame}>
+          {Object.keys(ICONS).map((key) => {
+            const isFloating = key === 'about' || key === 'profile';
+            return (
+              <button
+                key={key}
+                className={`${styles.cButton} ${active === key ? styles.cButtonActive : ''} ${isFloating ? `${styles.floating} ${styles[key] || ''}` : ''}`}
+                onClick={() => handleClick(key)}
+              >
+                <i data-feather={ICONS[key]}></i>
+              </button>
+            );
+          })}
+        </div>
+      </aside>
+      {/* Hidden ConnectButton, trigger lewat profil */}
+      <div ref={connectButtonRef} style={{ display: 'none' }}>
+        <ConnectButton showBalance={false} chainStatus="none" />
+      </div>
+    </>
+  );
+};
 
+export default Sidebar;
                                           return (
                                               <>
                                                     <div className={styles.sidebarContainer} role="complementary" aria-label="Sidebar container">
