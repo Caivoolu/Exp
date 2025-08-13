@@ -1,111 +1,79 @@
-import React, { useEffect, useRef } from 'react';
-import styles from '../styles/sidebar.module.css';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import React, { useEffect } from 'react';
+import styles from './sidebar.module.css';
+import Home from './pages/home';
+import Swap from './pages/swap';
+import Pool from './pages/pool';
+import Market from './pages/shopping-cart';
+import Lab from './pages/tool';
+import Info from './pages/info';
+import User from './pages/user';
 
-interface SidebarProps {
-  active: string;
-  setActive: (key: string) => void;
-}
+declare const feather: any;
 
-const ICONS: Record<string, string> = {
-  home: 'home',
-  lab: 'tool',
-  market: 'shopping-cart',
-  games: 'dollar-sign',
-  about: 'info',
-  profile: 'user',
+const PAGES = {
+  home: Home,
+  swap: Swap,
+  pool: Pool,
+  market: Market,
+  lab: Lab,
+  about: Info,
+  profile: User,
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ active, setActive }) => {
-  const connectButtonRef = useRef<HTMLDivElement>(null);
-
+const Sidebar = ({ setActivePage, activePage }) => {
   useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).feather) {
-      (window as any).feather.replace();
+    if (typeof feather !== 'undefined' && feather.replace) {
+      feather.replace();
     }
-  }, [active]);
+  }, [activePage]);
 
-  const handleClick = (key: string) => {
-    if (key === 'profile' && connectButtonRef.current) {
-      // Simulasi klik ConnectButton
-      const button = connectButtonRef.current.querySelector('button');
-      button?.click();
-    } else {
-      setActive(key);
-    }
+  const handleClick = (key) => {
+    setActivePage(key);
   };
+
+  const ActiveComponent = PAGES[activePage];
 
   return (
     <>
-      <aside className={styles.sidebarContainer}>
-        <div className={styles.sidebarFrame}>
-          {Object.keys(ICONS).map((key) => {
-            const isFloating = key === 'about' || key === 'profile';
-            return (
-              <button
-                key={key}
-                className={`${styles.cButton} ${active === key ? styles.cButtonActive : ''} ${isFloating ? `${styles.floating} ${styles[key] || ''}` : ''}`}
-                onClick={() => handleClick(key)}
-              >
-                <i data-feather={ICONS[key]}></i>
-              </button>
-            );
-          })}
-        </div>
-      </aside>
-      {/* Hidden ConnectButton, trigger lewat profil */}
-      <div ref={connectButtonRef} style={{ display: 'none' }}>
-        <ConnectButton showBalance={false} chainStatus="none" />
+      <div className={styles.sidebarContainer}>
+        <aside className={styles.sidebarFrame}>
+          {(Object.keys(PAGES)).map((key) => (
+            <button
+              key={key}
+              className={`${styles.cButton} ${activePage === key ? styles.cButtonActive : ''}`}
+              onClick={() => handleClick(key)}
+            >
+              <i data-feather={iconName(key)}></i>
+            </button>
+          ))}
+        </aside>
       </div>
+      <main className={styles.contentFrame}>
+        <ActiveComponent />
+      </main>
     </>
   );
 };
 
+function iconName(key) {
+  switch (key) {
+    case 'home':
+      return 'home';
+    case 'swap':
+      return 'refresh-cw';
+    case 'pool':
+      return 'database';
+    case 'market':
+      return 'shopping-cart';
+    case 'lab':
+      return 'tool';
+    case 'about':
+      return 'info';
+    case 'profile':
+      return 'user';
+    default:
+      return 'circle';
+  }
+}
+
 export default Sidebar;
-                                          return (
-                                              <>
-                                                    <div className={styles.sidebarContainer} role="complementary" aria-label="Sidebar container">
-                                                            <aside className={styles.sidebarFrame} role="navigation" aria-label="Sidebar tombol">
-                                                                      {(Object.keys(PAGES) as Array<keyof typeof PAGES>).map((key) => {
-                                                                                  const isFloating = key === 'about' || key === 'profile';
-                                                                                              return (
-                                                                                                            <button
-                                                                                                                            key={key}
-                                                                                                                                            className={`${styles.cButton} ${active === key ? styles.cButtonActive : ''} ${isFloating ? `${styles.floating} ${styles[key] || ''}` : ''}`}
-                                                                                                                                                            aria-label={key}
-                                                                                                                                                                            onClick={() => handleClick(key)}
-                                                                                                                                                                                          >
-                                                                                                                                                                                                          <i data-feather={iconName(key)}></i>
-                                                                                                                                                                                                                        </button>
-                                                                                                                                                                                                                                    );
-                                                                                                                                                                                                                                              })}
-                                                                                                                                                                                                                                                      </aside>
-                                                                                                                                                                                                                                                            </div>
-
-                                                                                                                                                                                                                                                                  <main className={styles.contentFrame} role="main" aria-live="polite">
-                                                                                                                                                                                                                                                                          {PAGES[active]}
-                                                                                                                                                                                                                                                                                </main>
-                                                                                                                                                                                                                                                                                    </>
-                                                                                                                                                                                                                                                                                      );
-                                                                                                                                                                                                                                                                                      };
-
-                                                                                                                                                                                                                                                                                      function iconName(key: keyof typeof PAGES): string {
-                                                                                                                                                                                                                                                                                        switch (key) {
-                                                                                                                                                                                                                                                                                            case 'home':
-                                                                                                                                                                                                                                                                                                  return 'home';
-                                                                                                                                                                                                                                                                                                      case 'lab':
-                                                                                                                                                                                                                                                                                                            return 'tool';
-                                                                                                                                                                                                                                                                                                                case 'market':
-                                                                                                                                                                                                                                                                                                                      return 'shopping-cart';
-                                                                                                                                                                                                                                                                                                                          case 'games':
-                                                                                                                                                                                                                                                                                                                                return 'dollar-sign';
-                                                                                                                                                                                                                                                                                                                                    case 'about':
-                                                                                                                                                                                                                                                                                                                                          return 'info';
-                                                                                                                                                                                                                                                                                                                                              case 'profile':
-                                                                                                                                                                                                                                                                                                                                                    return 'user';
-                                                                                                                                                                                                                                                                                                                                                        default:
-                                                                                                                                                                                                                                                                                                                                                              return 'circle';
-                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                }
-
-                                                                                                                                                                                                                                                                                                                                                                export default Sidebar;
