@@ -1,45 +1,45 @@
-// pages/_app.tsx
 import '../styles/global.css';
-import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WagmiProvider } from 'wagmi';
-import { RainbowKitProvider, type Locale } from '@rainbow-me/rainbowkit';
-import { config } from '../wagmi';
-
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
+import Content from '../components/Content';
+import Home from './home';
+import Tool from './tool';
+import ShoppingCart from './shopping-cart';
+import DollarSign from './dollar-sign';
+import Info from './info';
+import User from './user';
 
-const queryClient = new QueryClient();
+const PAGES = {
+  home: <Home />,
+  lab: <Tool />,
+  market: <ShoppingCart />,
+  games: <DollarSign />,
+  about: <Info />,
+  profile: <User />, // Content profil akan menampilkan wallet info
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { locale } = useRouter() as { locale: Locale };
+  const [active, setActive] = useState<keyof typeof PAGES>('home');
 
+  // Feather icons
   useEffect(() => {
-    document.body.classList.add('neo-bg');
-
-    // Load feather-icons script once if not loaded
     if (!document.querySelector('script#feather-icons')) {
       const script = document.createElement('script');
       script.id = 'feather-icons';
       script.src = 'https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js';
       script.async = true;
       document.body.appendChild(script);
+    } else if ((window as any).feather) {
+      (window as any).feather.replace();
     }
-  }, []);
+  }, [active]);
 
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider locale={locale}>
-          {/* Sidebar fixed di kiri */}
-          <Sidebar />
-          {/* Konten halaman utama */}
-          <Component {...pageProps} />
-        </RainbowKitProvider>
-      </QueryClientProvider>
-    </WagmiProvider>
+    <div className="appWrapper">
+      <Sidebar active={active} setActive={setActive} />
+      <Content active={active} pages={PAGES} />
+    </div>
   );
 }
 
