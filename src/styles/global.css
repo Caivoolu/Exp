@@ -1,207 +1,22 @@
-/* src/styles/global.css */
-/* ---- Neomorphism CSS ---- */
 :root {
-  --neo-bg: #e7edf3;
-  --neo-surface: #ecf2f8;
-  --neo-shadow-dark: rgba(163, 177, 198, 0.45);
-  --neo-shadow-light: rgba(255, 255, 255, 0.9);
-  --neo-accent: #6aa6ff;
-  --neo-text: #213547;
+  --neo-bg: #5a82f7;
+  --neo-surface: #5a82f7;
+  --neo-shadow-dark: rgba(59, 89, 182, 0.6);
+  --neo-shadow-light: rgba(144, 180, 255, 0.6);
+  --neo-text: #e0e7ff;
   --neo-radius: 16px;
-  --neo-gap: 16px;
-  --neo-elevation: 18px;
 }
 
-/* Dark mode vars */
-.dark {
-  --neo-bg: #0f1720;
-  --neo-surface: #0b1319;
-  --neo-shadow-dark: rgba(0, 0, 0, 0.7);
-  --neo-shadow-light: rgba(255, 255, 255, 0.03);
-  --neo-accent: #3ea0ff;
-  --neo-text: #d6e6ff;
-}
-
-/* Reset dasar */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   background: var(--neo-bg);
   color: var(--neo-text);
+  min-height: 100vh;
   padding: 0;
-  min-height: 100vh;
 }
 
-/* Layout untuk halaman mint */
-.neo-bg-mint {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: var(--neo-bg);
-  min-height: 100vh;
+.appWrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-/* Header untuk ConnectButton di pojok kanan atas */
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 20px;
-}
-
-/* Konten tengah untuk gambar NFT dan form */
-.nft-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* Gambar NFT */
-.nft-image {
-  max-width: 400px;
-  width: 100%;
-  border-radius: var(--neo-radius);
-  box-shadow:
-    -10px -10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-light),
-    10px 10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-dark);
-}
-
-/* Wrapper / background area */
-.neo-bg {
-  width: min(1100px, 95%);
-  display: grid;
-  gap: var(--neo-gap);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
-
-/* Kartu Neomorphism */
-.neo-card {
-  background: linear-gradient(180deg, var(--neo-surface), var(--neo-surface));
-  border-radius: var(--neo-radius);
-  padding: 20px;
-  box-shadow:
-    -10px -10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-light),
-    10px 10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-dark);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-/* Hover subtle lift */
-.neo-card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    -16px -16px calc(var(--neo-elevation) / 1.5) 0px var(--neo-shadow-light),
-    16px 16px calc(var(--neo-elevation) / 1.5) 0px var(--neo-shadow-dark);
-}
-
-/* Tombol Neomorphism */
-.neo-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  background: var(--neo-surface);
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow:
-    -6px -6px 16px 0 var(--neo-shadow-light),
-    6px 6px 16px 0 var(--neo-shadow-dark);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-  color: var(--neo-text);
-}
-
-/* pressed state */
-.neo-button:active {
-  transform: translateY(2px);
-  box-shadow:
-    inset 6px 6px 12px 0 var(--neo-shadow-dark),
-    inset -6px -6px 12px 0 var(--neo-shadow-light);
-}
-
-/* Accent / colored button */
-.neo-button.accent {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--neo-accent) 12%, var(--neo-surface)), var(--neo-surface));
-  color: white;
-  box-shadow:
-    -6px -6px 14px 0 rgba(255, 255, 255, 0.12),
-    6px 6px 18px 0 rgba(0, 0, 0, 0.25);
-}
-
-/* Input Neomorphism */
-.neo-input {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  background: var(--neo-surface);
-  box-shadow:
-    -6px -6px 12px 0 var(--neo-shadow-light),
-    6px 6px 12px 0 var(--neo-shadow-dark);
-  font-size: 15px;
-  color: var(--neo-text);
-  transition: box-shadow 0.12s ease, transform 0.12s ease;
-}
-
-/* focus */
-.neo-input:focus {
-  transform: translateY(-2px);
-  box-shadow:
-    -10px -10px 18px 0 var(--neo-shadow-light),
-    10px 10px 18px 0 var(--neo-shadow-dark),
-    0 0 0 4px color-mix(in srgb, var(--neo-accent) 12%, transparent);
-}
-
-/* Circular icon / avatar */
-.neo-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: inline-grid;
-  place-items: center;
-  background: var(--neo-surface);
-  box-shadow:
-    -8px -8px 18px 0 var(--neo-shadow-light),
-    8px 8px 18px 0 var(--neo-shadow-dark);
-}
-
-/* pressed/inset small */
-.neo-icon:active {
-  box-shadow:
-    inset 6px 6px 12px 0 var(--neo-shadow-dark),
-    inset -6px -6px 12px 0 var(--neo-shadow-light);
-}
-
-/* small utility */
-.row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.hstack {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.vstack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.small {
-  font-size: 13px;
-  color: color-mix(in srgb, var(--neo-text) 50%, transparent);
+  flex-direction: row;
 }
