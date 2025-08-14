@@ -1,207 +1,124 @@
-/* src/styles/global.css */
-/* ---- Neomorphism CSS ---- */
-:root {
-  --neo-bg: #e7edf3;
-  --neo-surface: #ecf2f8;
-  --neo-shadow-dark: rgba(163, 177, 198, 0.45);
-  --neo-shadow-light: rgba(255, 255, 255, 0.9);
-  --neo-accent: #6aa6ff;
-  --neo-text: #213547;
-  --neo-radius: 16px;
-  --neo-gap: 16px;
-  --neo-elevation: 18px;
-}
-
-/* Dark mode vars */
-.dark {
-  --neo-bg: #0f1720;
-  --neo-surface: #0b1319;
-  --neo-shadow-dark: rgba(0, 0, 0, 0.7);
-  --neo-shadow-light: rgba(255, 255, 255, 0.03);
-  --neo-accent: #3ea0ff;
-  --neo-text: #d6e6ff;
-}
-
-/* Reset dasar */
-body {
+/* Reset default styles untuk konsistensi */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--neo-bg);
-  color: var(--neo-text);
-  padding: 0;
-  min-height: 100vh;
-}
+    padding: 0;
+      box-sizing: border-box;
+      }
 
-/* Layout untuk halaman mint */
-.neo-bg-mint {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: var(--neo-bg);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-}
+      /* Atur font dan latar belakang body */
+      body {
+        font-family: 'Arial', sans-serif;
+          background-color: #5a82f7; /* Biru muda */
+            min-height: 100vh;
+              display: flex;
+                flex-direction: column;
+                }
 
-/* Header untuk ConnectButton di pojok kanan atas */
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 20px;
-}
+                /* Container utama untuk layout */
+                .container {
+                  display: flex;
+                    min-height: 100vh;
+                    }
 
-/* Konten tengah untuk gambar NFT dan form */
-.nft-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
+                    /* Styling untuk sidebar */
+                    .sidebar {
+                      width: 250px; /* Lebar sidebar tetap */
+                        background-color: #d1e3f6; /* Biru muda sedikit lebih gelap */
+                          padding: 20px;
+                            position: fixed;
+                              height: 100%;
+                                overflow-y: auto; /* Scroll jika konten sidebar panjang */
+                                  border-right: 1px solid #b0c7e6;
+                                  }
 
-/* Gambar NFT */
-.nft-image {
-  max-width: 400px;
-  width: 100%;
-  border-radius: var(--neo-radius);
-  box-shadow:
-    -10px -10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-light),
-    10px 10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-dark);
-}
+                                  /* Styling untuk konten utama */
+                                  .main-content {
+                                    margin-left: 250px; /* Sesuaikan dengan lebar sidebar */
+                                      padding: 20px;
+                                        flex-grow: 1;
+                                          background-color: #e6f0fa;
+                                          }
 
-/* Wrapper / background area */
-.neo-bg {
-  width: min(1100px, 95%);
-  display: grid;
-  gap: var(--neo-gap);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-}
+                                          /* Responsif untuk layar kecil */
+                                          @media (max-width: 768px) {
+                                            .sidebar {
+                                                width: 200px; /* Kurangi lebar sidebar di layar kecil */
+                                                  }
 
-/* Kartu Neomorphism */
-.neo-card {
-  background: linear-gradient(180deg, var(--neo-surface), var(--neo-surface));
-  border-radius: var(--neo-radius);
-  padding: 20px;
-  box-shadow:
-    -10px -10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-light),
-    10px 10px calc(var(--neo-elevation) / 2) 0px var(--neo-shadow-dark);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
+                                                    .main-content {
+                                                        margin-left: 200px; /* Sesuaikan margin dengan lebar sidebar */
+                                                          }
+                                                          }
 
-/* Hover subtle lift */
-.neo-card:hover {
-  transform: translateY(-6px);
-  box-shadow:
-    -16px -16px calc(var(--neo-elevation) / 1.5) 0px var(--neo-shadow-light),
-    16px 16px calc(var(--neo-elevation) / 1.5) 0px var(--neo-shadow-dark);
-}
+                                                          @media (max-width: 576px) {
+                                                            .container {
+                                                                flex-direction: column; /* Ubah ke tata letak kolom */
+                                                                  }
 
-/* Tombol Neomorphism */
-.neo-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  background: var(--neo-surface);
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow:
-    -6px -6px 16px 0 var(--neo-shadow-light),
-    6px 6px 16px 0 var(--neo-shadow-dark);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-  color: var(--neo-text);
-}
+                                                                    .sidebar {
+                                                                        width: 100%; /* Sidebar penuh di layar sangat kecil */
+                                                                            position: static; /* Nonaktifkan posisi fixed */
+                                                                                height: auto;
+                                                                                  }
 
-/* pressed state */
-.neo-button:active {
-  transform: translateY(2px);
-  box-shadow:
-    inset 6px 6px 12px 0 var(--neo-shadow-dark),
-    inset -6px -6px 12px 0 var(--neo-shadow-light);
-}
+                                                                                    .main-content {
+                                                                                        margin-left: 0; /* Hilangkan margin kiri */
+                                                                                            padding: 15px;
+                                                                                              }
+                                                                                              }
 
-/* Accent / colored button */
-.neo-button.accent {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--neo-accent) 12%, var(--neo-surface)), var(--neo-surface));
-  color: white;
-  box-shadow:
-    -6px -6px 14px 0 rgba(255, 255, 255, 0.12),
-    6px 6px 18px 0 rgba(0, 0, 0, 0.25);
-}
+                                                                                              /* Styling tambahan untuk elemen umum */
+                                                                                              h1, h2, h3 {
+                                                                                                margin-bottom: 15px;
+                                                                                                  color: #1a3c6e; /* Warna teks biru tua untuk kontras */
+                                                                                                  }
 
-/* Input Neomorphism */
-.neo-input {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  background: var(--neo-surface);
-  box-shadow:
-    -6px -6px 12px 0 var(--neo-shadow-light),
-    6px 6px 12px 0 var(--neo-shadow-dark);
-  font-size: 15px;
-  color: var(--neo-text);
-  transition: box-shadow 0.12s ease, transform 0.12s ease;
-}
+                                                                                                  p {
+                                                                                                    line-height: 1.6;
+                                                                                                      margin-bottom: 15px;
+                                                                                                      }
 
-/* focus */
-.neo-input:focus {
-  transform: translateY(-2px);
-  box-shadow:
-    -10px -10px 18px 0 var(--neo-shadow-light),
-    10px 10px 18px 0 var(--neo-shadow-dark),
-    0 0 0 4px color-mix(in srgb, var(--neo-accent) 12%, transparent);
-}
+                                                                                                      /* Styling untuk link */
+                                                                                                      a {
+                                                                                                        color: #1a3c6e;
+                                                                                                          text-decoration: none;
+                                                                                                            transition: color 0.3s;
+                                                                                                            }
 
-/* Circular icon / avatar */
-.neo-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: inline-grid;
-  place-items: center;
-  background: var(--neo-surface);
-  box-shadow:
-    -8px -8px 18px 0 var(--neo-shadow-light),
-    8px 8px 18px 0 var(--neo-shadow-dark);
-}
+                                                                                                            a:hover {
+                                                                                                              color: #0d2149;
+                                                                                                                text-decoration: underline;
+                                                                                                                }
 
-/* pressed/inset small */
-.neo-icon:active {
-  box-shadow:
-    inset 6px 6px 12px 0 var(--neo-shadow-dark),
-    inset -6px -6px 12px 0 var(--neo-shadow-light);
-}
+                                                                                                                /* Tambahan untuk elemen interaktif */
+                                                                                                                button, input, select, textarea {
+                                                                                                                  font-family: inherit;
+                                                                                                                    padding: 8px;
+                                                                                                                      border: 1px solid #b0c7e6;
+                                                                                                                        border-radius: 4px;
+                                                                                                                          background-color: #ffffff;
+                                                                                                                            transition: border-color 0.3s;
+                                                                                                                            }
 
-/* small utility */
-.row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.hstack {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-.vstack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.small {
-  font-size: 13px;
-  color: color-mix(in srgb, var(--neo-text) 50%, transparent);
-}
+                                                                                                                            button:hover, input:focus, select:focus, textarea:focus {
+                                                                                                                              border-color: #1a3c6e;
+                                                                                                                                outline: none;
+                                                                                                                                }
+
+                                                                                                                                button {
+                                                                                                                                  cursor: pointer;
+                                                                                                                                    background-color: #1a3c6e;
+                                                                                                                                      color: #ffffff;
+                                                                                                                                        border: none;
+                                                                                                                                        }
+
+                                                                                                                                        button:hover {
+                                                                                                                                          background-color: #0d2149;
+                                                                                                                                          }
+
+                                                                                                                                          /* Atur max-width untuk konten agar lebih readable */
+                                                                                                                                          .main-content > * {
+                                                                                                                                            max-width: 1200px;
+                                                                                                                                              margin-left: auto;
+                                                                                                                                                margin-right: auto;
+                                                                                                                                                }

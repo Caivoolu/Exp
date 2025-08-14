@@ -2,7 +2,30 @@ const Tool = () => {
   return (
     <>
       <h2>Laboratorium</h2>
-      <p>Laboratorium pengujian fitur dan eksperimen token.</p>
+      <p>Laborator
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ium pengujian fitur dan eksperimen token.</p>
     </>
   );
 };
