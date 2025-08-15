@@ -1,17 +1,48 @@
-/* src/components/pages/swap.module.css */
 .swapContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
+    display: flex;
+      justify-content: center;
+        align-items: center;
+          min-height: 100vh;
+            padding: 20px;
+              background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+              }
 
-.swapFrame {
-  width: 100%;
-  max-width: 400px;
-  height: 600px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
-}
+              .swapWidget {
+                width: 100%;
+                  max-width: 420px;
+                    background: #e3f2fd;
+                      border-radius: 20px;
+                        padding: 0;
+                          box-shadow: 
+                              20px 20px 40px rgba(144, 202, 249, 0.4),
+                                  -20px -20px 40px rgba(255, 255, 255, 0.8),
+                                      inset 0px 0px 0px rgba(144, 202, 249, 0.2);
+                                        border: 1px solid rgba(144, 202, 249, 0.1);
+                                          position: relative;
+                                            overflow: hidden;
+                                            }
+
+                                            .swapWidget::before {
+                                              content: '';
+                                                position: absolute;
+                                                  top: 0;
+                                                    left: 0;
+                                                      right: 0;
+                                                        bottom: 0;
+                                                          background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(144, 202, 249, 0.05));
+                                                            pointer-events: none;
+                                                            }
+
+                                                            @media (max-width: 768px) {
+                                                              .swapContainer {
+                                                                  padding: 10px;
+                                                                    }
+                                                                      
+                                                                        .swapWidget {
+                                                                            max-width: 100%;
+                                                                                border-radius: 16px;
+                                                                                    box-shadow: 
+                                                                                          15px 15px 30px rgba(144, 202, 249, 0.3),
+                                                                                                -15px -15px 30px rgba(255, 255, 255, 0.7);
+                                                                                                  }
+                                                                                                  }

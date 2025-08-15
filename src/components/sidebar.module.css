@@ -54,15 +54,15 @@
 }
 
 .contentFrame {
-    margin-left: 80px;
-    margin-right: 15px;
+    margin-left: 75px;
+    margin-right: 10px;
     margin-top: 60px;
     padding: 24px;
     max-width: 100vh;
     max-height: 100vh;
     border-radius: 15px;
     background: #5a82f7;
-    box-shadow: 0px 4px 8px #2b3e81, -8px -8px 16px #ffffff;
+    box-shadow: 0px 4px 8px #2b3e81, -0px -4px 2px #2b3e81;
     transition: box-shadow 0.3s ease;
     position: relative;
 }

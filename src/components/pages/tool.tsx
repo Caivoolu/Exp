@@ -1,7 +1,16 @@
 const Tool = () => {
   return (
     <>
-      <h2>Laboratorium</h2>
+      <h2>Laboratorium
+      lab lab lab
+      lab lab lab
+      lab lab lba
+      lab lab lba
+      lab lan lab
+      lab lab lbq
+      lab lan lan 
+      lbal nal naln 
+      lansldjdn</h2>
       <p>Laborator
         
         
